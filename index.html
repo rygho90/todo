@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1 class="title">Things To Do</h1>
+
+    <div class="sidebar">
+        <h2 class="home-link">Home</h2>
+        <h2 class="today-link">Today</h2>
+        <hr>
+        <h2 class="project-list-title">Projects</h2>
+        <ul class="project-list">
+            <li class="active-project">Default</li>
+            <li>Default 2</li>
+            <li>Default 3</li>
+        </ul>
+
+        <form action="">
+            <input 
+              type="text"
+              class="new-project"
+              placeholder="new project name"
+            />
+            <button class="btn-project">+</button>
+        </form>
+    </div>
+
+    <div class="content-screen">
+        <div class="content-header">
+            <h2 class="content-tile">Default</h2>
+        </div>
+        <div class="content-body">
+            <div class="tasks">
+                <div class="task">
+                    <input 
+                      type="checkbox" 
+                      id="task-1"
+                    />
+                    <label for="task-1">
+                        <span class="custom-checkbox"></span>
+                        Add Todo List CSS
+                    </label>
+                </div>
+
+                <div class="task">
+                    <input 
+                      type="checkbox" 
+                      id="task-2"
+                    />
+                    <label for="task-2">
+                        <span class="custom-checkbox"></span>
+                        Add Todo List JS
+                    </label>
+                </div>
+
+                <div class="task">
+                    <input 
+                      type="checkbox" 
+                      id="task-3"
+                    />
+                    <label for="task-3">
+                        <span class="custom-checkbox"></span>
+                        Show off Todo List
+                    </label>
+                </div>
+            </div>
+
+            <div class="new-task-creator">
+                <form action="">
+                    <input 
+                      type="text"
+                      class="new-task"
+                      placeholder="new task name"
+                    />
+                    <button class="btn-task">+</button>
+                </form>
+            </div>
+
+            <div class="deleters">
+                <button class="btn remove-completed">Remove Completed Tasks</button>
+                <button class="btn delete-project">Delete Current Project</button>
+                <button class="btn clear-all">Clear All Data</button>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
