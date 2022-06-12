@@ -1,0 +1,110 @@
+:root {
+    --clr-primary: rgb(54, 112, 199);
+    --clr-light: #f4f4f4;
+    --clr-dark: #333;
+    --clr-warning: rgb(99, 36, 36);
+}
+
+*,
+*::before,
+*::after {
+    font-family: inherit;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    font-weight: 300;
+    font-size: 1.5rem;
+    background-color: var(--clr-primary);
+    color: var(--clr-light);
+
+    display: grid;
+    grid:
+        "header header header header" auto
+        "...... prjcts contnt ......" auto /
+        1fr minmax(100px, 300px) minmax(250px, 500px) 1fr;
+}
+
+.title {
+    grid-area: header;
+    text-align: center;
+    font-size: calc(5vw + 1rem);
+    font-weight: 900;
+    color: rgba(0, 0, 0, 0.3);
+    letter-spacing: 2px;
+    margin: 0 0 0.5em;
+}
+
+.sidebar {
+    grid-area: prjcts;
+}
+
+.project-list {
+    font-size: 1.3  rem;
+    line-height: 1.7;
+    list-style: circle;
+    padding-left: 1.1em;
+}
+
+form {
+    display: flex;
+}
+
+.btn {
+    cursor: pointer;
+    background: 0;
+    border: 0;
+    padding: 0;
+    color: inherit;
+    font-size: 0.9rem;
+}
+
+.btn.create {
+    font-size: 1.8rem;
+    font-weight: 900;
+    margin-right: 0.25em;
+    transition: opacity 150ms ease-in;
+}
+
+.btn.create:hover {
+    opacity: 0.7;
+}
+
+.new {
+    background: transparent;
+    border: 0;
+    color: inherit;
+    border-bottom: 1px solid;
+    font-size: inherit;
+    outline: none;
+
+    transition: border-bottom 150ms ease-in;
+    order: 2;
+}
+
+::placeholder {
+    color: var(--clr-light);
+    opacity: 0.5;
+}
+
+.new:focus {
+    border-bottom-width: 3px;
+}
+
+.new:focus::placeholder {
+    opacity: 0.2;
+}
+
+.new.project {
+    font-size: 1.3rem;
+}
+
+.active-project {
+    font-weight: 700;
+}
+
+.content-screen {
+    grid-area: contnt;
+}
