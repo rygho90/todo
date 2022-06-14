@@ -39,6 +39,7 @@ body {
 
 .sidebar {
     grid-area: prjcts;
+    padding-right: 4rem;
 }
 
 .project-list {
@@ -46,6 +47,20 @@ body {
     line-height: 1.7;
     list-style: circle;
     padding-left: 1.1em;
+}
+
+.project-name,
+.home-link,
+.today-link,
+.project-list-title {
+    cursor: pointer;
+}
+
+.project-name:hover,
+.home-link:hover,
+.today-link:hover,
+.project-list-title:hover {
+    opacity: 0.7;
 }
 
 form {
@@ -101,10 +116,134 @@ form {
     font-size: 1.3rem;
 }
 
+.new.project,
+.new.task {
+    padding: 0.25em;
+}
+
+.new.task {
+    margin-bottom: 0;
+}
+
 .active-project {
     font-weight: 700;
 }
 
 .content-screen {
     grid-area: contnt;
+    background: var(--clr-light);
+    color: var(--clr-dark);
+}
+
+.content-header {
+    padding: 1rem 2rem;
+    background: #e4e4e4;
+}
+
+.content-title {
+    margin: 0;
+}
+
+.content-body {
+    padding: 2rem;
+    position: relative;
+}
+
+.new-task-creator .create {
+    color: var(--clr-primary);
+}
+
+[type="checkbox"] {
+    opacity: 0;
+    position: absolute;
+}
+
+.task label {
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+}
+
+.task {
+    position: relative;
+    margin-bottom: 1.25em;
+}
+
+.task::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: -0.5em;
+    height: 2px;
+    background: currentColor;
+    opacity: 0.2;
+}
+
+.custom-checkbox {
+    display: inline-block;
+    width: .75em;
+    height: .75em;
+    margin-right: .75em;
+    cursor: pointer;
+    border: 2px solid currentColor;
+    border-radius: 50%;
+    transform: scale(1);
+    transition: transform 200ms ease-in-out;
+}
+
+.task:hover .custom-checkbox,
+[type="checkbox"]:focus + label .custom-checkbox {
+    transform: scale(1.1);
+    color: var(--clr-primary);
+}
+
+[type="checkbox"]:checked + label .custom-checkbox {
+    background: var(--clr-primary);
+    border-color: var(--clr-primary);
+    box-shadow: inset 0 0 0px 2px white;
+}
+
+[type="checkbox"]:checked + label {
+    opacity: 0.5;
+}
+
+.task label::after {
+    content: '';
+    position: absolute;
+    left: 1.5em;
+    right: 0;
+    top: calc(50% -1.5px);
+    height: 3px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 150ms ease-in-out;
+}
+
+[type="checkbox"]:checked + label:after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+.deleters {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: -95px;
+    color: var(--clr-light);
+}
+
+.btn.delete {
+    font-weight: 700;
+    letter-spacing: 1px;
+    opacity: 0.7;
+    font-size: 1rem;
+    transition: color 200ms;
+}
+
+.btn.delete:hover {
+    color: var(--clr-warning);
 }
