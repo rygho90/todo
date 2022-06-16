@@ -2,13 +2,8 @@ const projectContainer = document.querySelector('[data-projects]');
 const newProjectForm = document.querySelector('[data-new-project-form]')
 const newProjectInput = document.querySelector('[data-new-project-input]')
 
-const projects = [{
-    id: 1,
-    name: 'name'
-}, {
-    id: 2,
-    name: 'todo'
-}]
+const LOCAL_STORAGE_PROJECT_KEY = 'task.projects';
+const projects = JSON.parse(localStorage.getItem(LOCAL_STORAGE_PROJECT_KEY)) || [];
 
 newProjectForm.addEventListener('submit', e => {
     e.preventDefault();
@@ -17,11 +12,20 @@ newProjectForm.addEventListener('submit', e => {
     const project = createProject(projectName);
     newProjectInput.value = null;
     projects.push(project);
-    render();
+    saveAndRender();
 })
 
 function createProject(name) {
     return { id: Date.now().toString(), name: name, tasks: [] }
+}
+
+function saveAndRender() {
+    save();
+    render();
+}
+
+function save() {
+    localStorage.setItem(LOCAL_STORAGE_PROJECT_KEY, JSON.stringify(projects));
 }
 
 function render() {
