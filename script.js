@@ -26,6 +26,7 @@ newProjectForm.addEventListener('submit', e => {
     const project = createProject(projectName);
     newProjectInput.value = null;
     projects.push(project);
+    selectedProjectId = project.id;
     saveAndRender();
 })
 
