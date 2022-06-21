@@ -131,7 +131,7 @@ form {
 
 .content-screen {
     grid-area: contnt;
-    background: var(--clr-light);
+    
     color: var(--clr-dark);
 }
 
@@ -147,6 +147,7 @@ form {
 .content-body {
     padding: 2rem;
     position: relative;
+    background: var(--clr-light);
 }
 
 .new-task-creator .create {
@@ -232,7 +233,7 @@ form {
     position: absolute;
     width: 100%;
     left: 0;
-    bottom: -95px;
+    bottom: -55px;
     color: var(--clr-light);
 }
 
