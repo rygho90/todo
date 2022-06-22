@@ -5,6 +5,7 @@ const deleteProjectBtn = document.querySelector('[data-delete-project-btn]');
 const contentContainer = document.querySelector('[data-content-container]');
 const contentTitle = document.querySelector('[data-content-title]');
 const tasksContainer = document.querySelector('[data-tasks]');
+const taskTemplate = document.getElementById('task-template');
 
 const LOCAL_STORAGE_PROJECT_KEY = 'task.projects';
 const LOCAL_STORAGE_SELECTED_PROJECT_ID_KEY = 'task.selectedProjectId';
@@ -37,7 +38,11 @@ deleteProjectBtn.addEventListener('click', e => {
 })
 
 function createProject(name) {
-    return { id: Date.now().toString(), name: name, tasks: [] }
+    return { id: Date.now().toString(), name: name, tasks: [{
+        id: 1,
+        name: 'asdfadff',
+        complete: false
+    }] }
 }
 
 function saveAndRender() {
@@ -61,7 +66,22 @@ function render() {
     } 
     else {
         contentTitle.innerText = selectedProject.name;
+        clearElement(tasksContainer);
+        renderTasks(selectedProject);
     }
+}
+
+function renderTasks(selectedProject) {
+    selectedProject.tasks.forEach(task => {
+        const taskElement = document.importNode(taskTemplate.content, true);
+        const checkbox = taskElement.querySelector('input');
+        checkbox.id = task.id;
+        checkbox.checked = task.complete;
+        const label = taskElement.querySelector('label');
+        label.htmlFor = task.id;
+        label.append(task.name);
+        tasksContainer.appendChild(taskElement);
+    })
 }
 
 function renderProjects() {
