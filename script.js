@@ -3,6 +3,7 @@ const taskContainer = document.querySelector('[data-tasks]');
 const newProjectForm = document.querySelector('[data-new-project-form]');
 const newProjectInput = document.querySelector('[data-new-project-input]');
 const deleteProjectBtn = document.querySelector('[data-delete-project-btn]');
+const removeCompletedTasksBtn = document.querySelector('[data-remove-completed-tasks-btn]');
 const contentContainer = document.querySelector('[data-content-container]');
 const contentTitle = document.querySelector('[data-content-title]');
 const tasksContainer = document.querySelector('[data-tasks]');
@@ -60,6 +61,12 @@ newTaskForm.addEventListener('submit', e => {
 deleteProjectBtn.addEventListener('click', e => {
     projects = projects.filter(project => project.id !== selectedProjectId);
     selectedProjectId = null;
+    saveAndRender();
+})
+
+removeCompletedTasksBtn.addEventListener('click', e=> {
+    const selectedProject = projects.find(project => project.id === selectedProjectId);
+    selectedProject.tasks = selectedProject.tasks.filter(task => task.complete == false)
     saveAndRender();
 })
 
