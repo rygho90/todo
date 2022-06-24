@@ -1,4 +1,5 @@
 const projectContainer = document.querySelector('[data-projects]');
+const taskContainer = document.querySelector('[data-tasks]');
 const newProjectForm = document.querySelector('[data-new-project-form]');
 const newProjectInput = document.querySelector('[data-new-project-input]');
 const deleteProjectBtn = document.querySelector('[data-delete-project-btn]');
@@ -16,9 +17,21 @@ let selectedProjectId = localStorage.getItem(LOCAL_STORAGE_SELECTED_PROJECT_ID_K
 
 projectContainer.addEventListener('click', e => {
     if (e.target.tagName.toLowerCase() === 'li') {
-        console.log(e.target.dataset.projectId);
         selectedProjectId = e.target.dataset.projectId;
         saveAndRender();
+    }
+})
+
+taskContainer.addEventListener('click', e => {
+    if (e.target.tagName.toLowerCase() === 'input') {
+        const taskId = e.target.id;
+        const selectedProject = projects.find(project => project.id === selectedProjectId);
+        selectedProject.tasks.forEach(task => {
+            if (task.id == taskId) {
+                task.complete = (task.complete) ? false : true;
+            }
+        })
+        save()
     }
 })
 
