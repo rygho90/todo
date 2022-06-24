@@ -38,11 +38,11 @@ deleteProjectBtn.addEventListener('click', e => {
 })
 
 function createProject(name) {
-    return { id: Date.now().toString(), name: name, tasks: [{
-        id: 1,
-        name: 'asdfadff',
-        complete: false
-    }] }
+    return { id: Date.now().toString(), name: name, tasks: [] }
+}
+
+function createTask(name) {
+    return { id: Date.now().toString(), name: name, complete: false}
 }
 
 function saveAndRender() {
