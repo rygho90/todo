@@ -6,6 +6,8 @@ const contentContainer = document.querySelector('[data-content-container]');
 const contentTitle = document.querySelector('[data-content-title]');
 const tasksContainer = document.querySelector('[data-tasks]');
 const taskTemplate = document.getElementById('task-template');
+const newTaskForm = document.querySelector('[data-new-task-form]');
+const newTaskInput = document.querySelector('[data-new-task-input]');
 
 const LOCAL_STORAGE_PROJECT_KEY = 'task.projects';
 const LOCAL_STORAGE_SELECTED_PROJECT_ID_KEY = 'task.selectedProjectId';
@@ -28,6 +30,17 @@ newProjectForm.addEventListener('submit', e => {
     newProjectInput.value = null;
     projects.push(project);
     selectedProjectId = project.id;
+    saveAndRender();
+})
+
+newTaskForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const taskName = newTaskInput.value;
+    const selectedProject = projects.find(project => project.id === selectedProjectId);
+    if (taskName == null || taskName === '') return;
+    const task = createTask(taskName);
+    newTaskInput.value = null;
+    selectedProject.tasks.push(task);
     saveAndRender();
 })
 
