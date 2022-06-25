@@ -10,6 +10,9 @@ const tasksContainer = document.querySelector('[data-tasks]');
 const taskTemplate = document.getElementById('task-template');
 const newTaskForm = document.querySelector('[data-new-task-form]');
 const newTaskInput = document.querySelector('[data-new-task-input]');
+const taskCreatorElement = document.querySelector('[data-task-creator]')
+const homeTemplate = document.getElementById('home-template');
+const homeLink = document.querySelector('[data-home-link]');
 
 const LOCAL_STORAGE_PROJECT_KEY = 'task.projects';
 const LOCAL_STORAGE_SELECTED_PROJECT_ID_KEY = 'task.selectedProjectId';
@@ -21,6 +24,11 @@ projectContainer.addEventListener('click', e => {
         selectedProjectId = e.target.dataset.projectId;
         saveAndRender();
     }
+})
+
+homeLink.addEventListener('click', () => {
+    selectedProjectId = null;
+    saveAndRender();
 })
 
 taskContainer.addEventListener('click', e => {
@@ -92,10 +100,11 @@ function render() {
     clearElement(projectContainer);
     renderProjects();
 
-    
     const selectedProject = projects.find(project => project.id === selectedProjectId) || null;
     if (selectedProject == null) {
         contentTitle.innerText = 'Home';
+        clearElement(tasksContainer);
+        renderHome();
     } 
     else {
         contentTitle.innerText = selectedProject.name;
@@ -115,6 +124,7 @@ function renderTasks(selectedProject) {
         label.append(task.name);
         tasksContainer.appendChild(taskElement);
     })
+    taskCreatorElement.style.display = 'initial';
 }
 
 function renderProjects() {
@@ -126,6 +136,48 @@ function renderProjects() {
         if (project.id === selectedProjectId) projectElement.classList.add('active-project');
         projectContainer.append(projectElement);
     })  
+}
+
+function renderHome() {
+    taskCreatorElement.style.display = 'none';
+
+    let time = new Date().getHours();
+    
+    const homeElement = document.importNode(homeTemplate.content, true);
+    const todaysDate = homeElement.querySelector('[data-date]');
+    todaysDate.innerText = new Date().toLocaleDateString();
+    const greeting = homeElement.querySelector('[data-greeting]');
+    greeting.innerText = getGreeting(time);
+
+    taskCount = getTaskCount();
+    const taskCountElement = homeElement.querySelector('[data-task-count]');
+    if (taskCount === 1) {
+        taskCountElement.innerText = `You have ${taskCount} task waiting for you.`
+    } else {
+        taskCountElement.innerText = `You have ${taskCount} tasks waiting for you.`
+    }
+
+    tasksContainer.appendChild(homeElement);
+}
+
+function getGreeting(time) {
+    if (time >= 4 && time <= 11) {
+        return "Good morning."
+    } else if (time >= 12 && time <= 17) {
+        return "Good afternoon."
+    } else {
+        return "Good evening."
+    }
+}
+
+function getTaskCount() {
+    let taskCount = 0;
+    projects.forEach(project => {
+        project.tasks.forEach(task => {
+            if (task.complete == false) taskCount += 1;
+        })
+    })
+    return taskCount;
 }
 
 function clearElement(element) {

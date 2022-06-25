@@ -12,8 +12,7 @@
     <h1 class="title">Things To Do</h1>
 
     <div class="sidebar">
-        <h2 class="home-link">Home</h2>
-        <h2 class="today-link">Today</h2>
+        <h2 class="home-link" data-home-link>Home</h2>
         <hr>
         <h2 class="project-list-title">Projects</h2>
         <ul class="project-list" data-projects>
@@ -79,7 +78,7 @@
             </div>
             
 
-            <div class="new-task-creator">
+            <div class="new-task-creator" data-task-creator>
                 <form action="" data-new-task-form="">
                     <input 
                       type="text"
@@ -106,6 +105,14 @@
                 <span class="custom-checkbox"></span>
             </label>
         </div>
+    </template>
+
+    <template id ="home-template">
+        <div class="home-line" data-date></div>
+        <br>
+        <div class="home-line" data-greeting></div>
+        <br>
+        <div class="home-line" data-task-count></div>
     </template>
 </body>
 </html>

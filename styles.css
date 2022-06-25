@@ -51,15 +51,13 @@ body {
 
 .project-name,
 .home-link,
-.today-link,
-.project-list-title {
+.today-link {
     cursor: pointer;
 }
 
 .project-name:hover,
 .home-link:hover,
-.today-link:hover,
-.project-list-title:hover {
+.today-link:hover {
     opacity: 0.7;
 }
 
