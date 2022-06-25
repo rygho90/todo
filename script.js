@@ -13,6 +13,7 @@ const newTaskInput = document.querySelector('[data-new-task-input]');
 const taskCreatorElement = document.querySelector('[data-task-creator]')
 const homeTemplate = document.getElementById('home-template');
 const homeLink = document.querySelector('[data-home-link]');
+const clearAllBtn = document.querySelector('[data-clear-all-btn]')
 
 const LOCAL_STORAGE_PROJECT_KEY = 'task.projects';
 const LOCAL_STORAGE_SELECTED_PROJECT_ID_KEY = 'task.selectedProjectId';
@@ -66,15 +67,21 @@ newTaskForm.addEventListener('submit', e => {
     saveAndRender();
 })
 
-deleteProjectBtn.addEventListener('click', e => {
+deleteProjectBtn.addEventListener('click', () => {
     projects = projects.filter(project => project.id !== selectedProjectId);
     selectedProjectId = null;
     saveAndRender();
 })
 
-removeCompletedTasksBtn.addEventListener('click', e=> {
+removeCompletedTasksBtn.addEventListener('click', () => {
     const selectedProject = projects.find(project => project.id === selectedProjectId);
     selectedProject.tasks = selectedProject.tasks.filter(task => task.complete == false)
+    saveAndRender();
+})
+
+clearAllBtn.addEventListener('click', () => {
+    projects = [];
+    selectedProjectId = null;
     saveAndRender();
 })
 
