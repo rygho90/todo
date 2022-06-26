@@ -246,3 +246,14 @@ form {
 .btn.delete:hover {
     color: var(--clr-warning);
 }
+
+@media screen and (max-width: 600px) {
+    body {
+        text-align: center;
+        grid:
+            "header" auto
+            "prjcts" auto
+            "contnt" auto /
+            1fr ;
+    }
+}
