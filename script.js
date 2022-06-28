@@ -14,6 +14,7 @@ const taskCreatorElement = document.querySelector('[data-task-creator]')
 const homeTemplate = document.getElementById('home-template');
 const homeLink = document.querySelector('[data-home-link]');
 const clearAllBtn = document.querySelector('[data-clear-all-btn]')
+const collapseProjectsBtn = document.querySelector('[data-project-list-title]')
 
 const LOCAL_STORAGE_PROJECT_KEY = 'task.projects';
 const LOCAL_STORAGE_SELECTED_PROJECT_ID_KEY = 'task.selectedProjectId';
@@ -83,6 +84,12 @@ clearAllBtn.addEventListener('click', () => {
     projects = [];
     selectedProjectId = null;
     saveAndRender();
+})
+
+collapseProjectsBtn.addEventListener('click', () => {
+    if (projectContainer.style.display === "none") {
+        projectContainer.style.display = "block";
+    } else projectContainer.style.display = "none";
 })
 
 function createProject(name) {
